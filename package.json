@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
-    "test": "ava"
+    "test": "ava",
+    "heroku-postbuild": "npm install --production"
+  },
+  "engines": {
+    "node": "13.2.0",
+    "npm": "6.13.2"
   },
   "repository": {
     "type": "git",
@@ -20,9 +25,23 @@
   "homepage": "https://github.com/Filelify/Backend#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "pg": "^7.14.0"
   },
   "devDependencies": {
-    "ava": "^2.4.0"
+    "ava": "^2.4.0",
+    "dotenv": "^8.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-node": "^4.0.0",
+    "eslint-config-prettier": "^6.8.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "prettier": "^1.19.1"
   }
 }
