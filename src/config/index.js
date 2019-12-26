@@ -1,0 +1,10 @@
+module.exports = {
+  PORT: process.env.PORT,
+  PG: {
+    USER: process.env.PGUSER,
+    HOST: process.env.PGHOST,
+    DATABASE: process.env.PGDATABASE,
+    PASSWORD: process.env.PGPASSWORD,
+    PORT: process.env.PGPORT
+  }
+};
