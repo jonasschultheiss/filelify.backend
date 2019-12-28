@@ -18,7 +18,11 @@ const {
   logLevels
 } = require('./src/commons/logging');
 
-const client = new Client();
+const client = process.env.DATABASE_URL ? new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true,
+}) : new Client();
+
 const port = config.PORT || 3000;
 
 app.use('/api/v1', [routes]);
@@ -30,9 +34,7 @@ function onSignal() {
     message: 'Server got SIGTERM and will now cleanup before shutting down.'
   });
 
-  return Promise.all([
-    client.end()
-  ]);
+  return Promise.all([client.end]);
 }
 
 function onShutdown() {
@@ -63,5 +65,5 @@ server.listen(port, () => {
     level: logLevels.INFO,
     message: `server has started and listens to port ${port}`,
     port
-  })
+  });
 });
