@@ -100,6 +100,30 @@ npm run lint
 
 ## 🎋 Environment Variables <a name="env"></a>
 
+### Production
+
+`PORT` - specify the port you want the app to run on
+
+`DATABASE_URL` - specify the connection url to the postgresql database
+
+`LOGZIO_TOKEN` - specify the token for the logging per logz.io
+
+### Development
+
+`PORT` - specify the port you want the app to run on
+
+`PGUSER` - postgresql user
+
+`PGHOST` - postgresql host
+
+`PGDATABASE` - postgresql database
+
+`PGPASSWORD` - postgresql password
+
+`PGPORT` - postgresql port
+
+`LOGZIO_TOKEN` - specify the token for the logging per logz.io
+
 ## 🎈 Usage <a name="usage"></a>
 
 TODO
