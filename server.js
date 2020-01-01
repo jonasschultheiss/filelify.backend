@@ -11,6 +11,7 @@ const config = require('./src/config');
 const routes = require('./src/routes/index');
 const { logger, logLevels } = require('./src/commons/logging');
 
+<<<<<<< HEAD
 const client = config.PG.DATABASE
   ? new Client({
       user: config.PG.USER,
@@ -20,6 +21,13 @@ const client = config.PG.DATABASE
       port: config.PG.PORT
     })
   : new Client();
+=======
+const client = process.env.DATABASE_URL ? new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true,
+}) : new Client();
+
+>>>>>>> 9acb8f3808db0b48c98758bb3faa6a270d32eb78
 const port = config.PORT || 3000;
 
 app.use('/api/v1', [routes]);
@@ -79,4 +87,8 @@ server.listen(port, () => {
     message: `Server has started and listens to port ${port}.`,
     port
   });
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> 9acb8f3808db0b48c98758bb3faa6a270d32eb78
