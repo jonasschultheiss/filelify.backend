@@ -4,8 +4,10 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "NODE_ENV=production node server.js",
+    "start:dev": "node server.js",
     "watch": "nodemon server.js",
+    "lint": "eslint .",
     "test": "ava",
     "heroku-postbuild": "npm install --production"
   },
@@ -19,7 +21,7 @@
   },
   "keywords": [],
   "author": "Jonas Raphael Schultheiss",
-  "license": "NONE",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Filelify/Backend/issues"
   },
@@ -30,7 +32,8 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "pg": "^7.14.0",
-    "winston": "^3.2.1"
+    "winston": "^3.2.1",
+    "winston-logzio": "^5.0.3"
   },
   "devDependencies": {
     "ava": "^2.4.0",
