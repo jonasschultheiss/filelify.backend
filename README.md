@@ -13,6 +13,7 @@
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/filelify/Backend/Node%20CI/develop?label=build%20develop&style=flat-square)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/filelify/Backend/master?label=last%20commit%20master&style=flat-square)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/filelify/Backend/develop?label=last%20commit%20develop&style=flat-square)
+[![time tracker](https://wakatime.com/badge/github/Filelify/Backend.svg)](https://wakatime.com/badge/github/Filelify/Backend)
 
 <!--
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
