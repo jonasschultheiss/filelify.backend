@@ -1,5 +1,3 @@
-const db = require('./../db');
-
 const ping = async (req, res) => {
   res.send('system is up and running.');
 };
