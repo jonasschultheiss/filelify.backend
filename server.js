@@ -1,27 +1,22 @@
 require('dotenv').config();
 
 const http = require('http');
-const {
-  Client
-} = require('pg');
+const { Client } = require('pg');
 const express = require('express');
 
 const app = express();
-const {
-  createTerminus
-} = require('@godaddy/terminus');
+const { createTerminus } = require('@godaddy/terminus');
 
-const config = require('./src/config');
+const config = require('./src/commons/config');
 const routes = require('./src/routes/index');
-const {
-  logger,
-  logLevels
-} = require('./src/commons/logging');
+const { logger, logLevels } = require('./src/commons/logging');
 
-const client = process.env.DATABASE_URL ? new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true,
-}) : new Client();
+const client = config.DATABASE_URL
+  ? new Client({
+      connectionString: config.DATABASE_URL,
+      ssl: true
+    })
+  : new Client();
 
 const port = config.PORT || 3000;
 
@@ -40,7 +35,7 @@ function onSignal() {
 function onShutdown() {
   logger.log({
     level: 'info',
-    message: 'Server has finished cleanup'
+    message: 'Server has finished cleanup.'
   });
 }
 
@@ -50,7 +45,7 @@ function healthCheck() {
 
 const options = {
   healthChecks: {
-    '/healthcheck': healthCheck,
+    '/api/healthcheck': healthCheck,
     verbatim: true
   },
   timeout: 1000,
@@ -60,10 +55,26 @@ const options = {
 
 createTerminus(server, options);
 
+client
+  .connect()
+  .then(() => {
+    logger.log({
+      level: logLevels.INFO,
+      message: 'Connected successfully to db.'
+    });
+  })
+  .catch(err => {
+    logger.log({
+      level: logLevels.ERROR,
+      message: 'Exception while trying to connect to db.',
+      err
+    });
+  });
+
 server.listen(port, () => {
   logger.log({
     level: logLevels.INFO,
-    message: `server has started and listens to port ${port}`,
+    message: `Server has started and listens to port ${port}.`,
     port
   });
 });

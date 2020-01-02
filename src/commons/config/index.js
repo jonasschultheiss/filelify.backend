@@ -6,5 +6,8 @@ module.exports = {
     DATABASE: process.env.PGDATABASE,
     PASSWORD: process.env.PGPASSWORD,
     PORT: process.env.PGPORT
-  }
+  },
+  LOGZIO_TOKEN: process.env.LOGZIO_TOKEN,
+  DATABASE_URL: process.env.DATABASE_URL,
+  DBTYPE: process.env.DBTYPE
 };
