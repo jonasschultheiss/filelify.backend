@@ -8,7 +8,6 @@
 <div align="center">
 
 ![GitHub](https://img.shields.io/github/license/filelify/Backend?style=flat-square)
-![GitHub Release Date](https://img.shields.io/github/release-date/filelify/Backend?style=flat-square)
 ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/filelify/Backend?style=flat-square)
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/filelify/Backend/Node%20CI/master?label=build%20master&style=flat-square)
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/filelify/Backend/Node%20CI/develop?label=build%20develop&style=flat-square)
@@ -44,6 +43,8 @@
 ## 🧐 About <a name = "about"></a>
 
 This is a school project which I might refer to from a future portfolio website.
+
+<img src="docs/assets/flowOfDataAndDependencies.svg" alt="flow of dependencies and data"></a>
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
@@ -108,6 +109,8 @@ npm run lint
 
 `LOGZIO_TOKEN` - specify the token for the logging per logz.io
 
+`DBTYPE` - specify what db should be used. available: `postgresql`.
+
 ### Development
 
 `PORT` - specify the port you want the app to run on
@@ -123,6 +126,8 @@ npm run lint
 `PGPORT` - postgresql port
 
 `LOGZIO_TOKEN` - specify the token for the logging per logz.io
+
+`DBTYPE` - specify what db should be used. available: `postgresql`.
 
 ## 🎈 Usage <a name="usage"></a>
 
