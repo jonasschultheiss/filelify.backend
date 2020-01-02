@@ -8,5 +8,6 @@ module.exports = {
     PORT: process.env.PGPORT
   },
   LOGZIO_TOKEN: process.env.LOGZIO_TOKEN,
-  DATABASE_URL: process.env.DATABASE_URL
+  DATABASE_URL: process.env.DATABASE_URL,
+  DBTYPE: process.env.DBTYPE
 };
