@@ -21,9 +21,8 @@ switch (config.DBTYPE) {
 
 module.exports = {
   permissions: {
-    getAllPermissions: db.permissions.getAllPermissions,
-    getUserPermissions: db.permissions.getUserPermissions,
-    getAdminPermissions: db.permissions.getAdminPermissions,
+    getAllPermissions: db.permissions.listPermissions,
+    getSpecificPermissions: db.permissions.getPermission,
     ...permissionConstants
   },
   users: {

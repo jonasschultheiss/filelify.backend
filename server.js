@@ -8,7 +8,8 @@ const app = express();
 const { createTerminus } = require('@godaddy/terminus');
 
 const config = require('./src/commons/config');
-const routes = require('./src/routes/index');
+const routes = require('./src/routes');
+const middleware = require('./src/middleware');
 const { logger, logLevels } = require('./src/commons/logging');
 
 const client = config.DATABASE_URL
@@ -20,13 +21,17 @@ const client = config.DATABASE_URL
 
 const port = config.PORT || 3000;
 
+app.set('trust proxy', 1);
 app.use('/api/v1', [routes]);
+
+app.use(middleware);
+
 const server = http.createServer(app);
 
 function onSignal() {
   logger.log({
     level: 'info',
-    message: 'Server got SIGTERM and will now cleanup before shutting down.'
+    message: 'Server got SIGINT and will now cleanup before shutting down.'
   });
 
   return Promise.all([client.end]);
@@ -44,6 +49,7 @@ function healthCheck() {
 }
 
 const options = {
+  signal: 'SIGINT',
   healthChecks: {
     '/api/healthcheck': healthCheck,
     verbatim: true
