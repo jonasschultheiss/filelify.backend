@@ -12,6 +12,11 @@ const routes = require('./src/routes');
 const middleware = require('./src/middleware');
 const { logger, logLevels } = require('./src/commons/logging');
 
+logger.log({
+  level: logLevels.INFO,
+  message: 'database url',
+  config: config.DATABASE_URL
+});
 const client = config.DATABASE_URL
   ? new Client({
       connectionString: config.DATABASE_URL,
