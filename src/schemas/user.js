@@ -9,7 +9,7 @@ const user = {
     .max(12),
   password: Joi.string()
     .min(8)
-    .max(30)
+    .max(50)
     .pattern(regex.password),
   email: Joi.string()
     .min(1)

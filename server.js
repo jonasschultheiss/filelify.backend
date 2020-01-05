@@ -21,10 +21,10 @@ const client = config.DATABASE_URL
 
 const port = config.PORT || 3000;
 
+app.use(middleware);
+
 app.set('trust proxy', 1);
 app.use('/api/v1', [routes]);
-
-app.use(middleware);
 
 const server = http.createServer(app);
 

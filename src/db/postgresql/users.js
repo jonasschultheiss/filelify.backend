@@ -31,16 +31,20 @@ const createUser = async (
     });
 
     pool.end();
-    return rows;
+    return rows[0];
   } catch (err) {
     logger.log({
       level: logLevels.ERROR,
       message: 'exception in query in users.js:createUser',
       err
     });
-
     pool.end();
-    return err;
+
+    if (err.code === '23505') {
+      throw Error('Name or Email already exist.');
+    } else {
+      throw err;
+    }
   }
 };
 

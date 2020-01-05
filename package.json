@@ -29,12 +29,17 @@
   "dependencies": {
     "@godaddy/terminus": "^4.3.1",
     "@hapi/joi": "^16.1.8",
+    "@types/argon2": "^0.15.0",
+    "@types/body-parser": "^1.17.1",
     "@types/helmet": "0.0.45",
+    "argon2": "^0.25.1",
+    "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-joi-validation": "^4.0.3",
     "helmet": "^3.21.2",
     "jsonwebtoken": "^8.5.1",
+    "node-gyp": "^5.0.7",
     "pg": "^7.14.0",
     "winston": "^3.2.1",
     "winston-logzio": "^5.0.3"

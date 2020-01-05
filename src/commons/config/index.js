@@ -9,5 +9,6 @@ module.exports = {
   },
   LOGZIO_TOKEN: process.env.LOGZIO_TOKEN,
   DATABASE_URL: process.env.DATABASE_URL,
-  DBTYPE: process.env.DBTYPE
+  DBTYPE: process.env.DBTYPE,
+  JWT_SECRET: process.env.JWT_SECRET
 };

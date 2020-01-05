@@ -27,12 +27,12 @@ const getPermission = async name => {
   try {
     const {
       rows
-    } = await pool.query("select * from permissions where name = '$1'", [name]);
+    } = await pool.query('select * from permissions where name = $1', [name]);
 
     logger.info('successfully queried permissions table.');
 
     pool.end();
-    return rows;
+    return rows[0];
   } catch (err) {
     logger.log({
       level: logLevels.ERROR,
