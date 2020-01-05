@@ -16,24 +16,27 @@ const {
 
 const winstonTransports = [];
 winstonTransports.push(new transports.Console());
-winstonTransports.push(
-  new transports.File({
-    filename: `../../../logs/${logLevelConstants.ERROR}.log`,
-    level: logLevelConstants.ERROR
-  })
-);
-winstonTransports.push(
-  new transports.File({
-    filename: `../../../logs/${logLevelConstants.WARN}.log`,
-    level: logLevelConstants.WARN
-  })
-);
-winstonTransports.push(
-  new transports.File({
-    filename: `../../../logs/${logLevelConstants.INFO}.log`,
-    level: logLevelConstants.INFO
-  })
-);
+
+if (process.env.NODE_ENV === 'production') {
+  winstonTransports.push(
+    new transports.File({
+      filename: `../../../logs/${logLevelConstants.ERROR}.log`,
+      level: logLevelConstants.ERROR
+    })
+  );
+  winstonTransports.push(
+    new transports.File({
+      filename: `../../../logs/${logLevelConstants.WARN}.log`,
+      level: logLevelConstants.WARN
+    })
+  );
+  winstonTransports.push(
+    new transports.File({
+      filename: `../../../logs/${logLevelConstants.INFO}.log`,
+      level: logLevelConstants.INFO
+    })
+  );
+}
 
 if (config.LOGZIO_TOKEN) {
   winstonTransports.push(
