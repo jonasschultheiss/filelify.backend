@@ -48,12 +48,13 @@ const createUser = async (
   }
 };
 
-const getUser = async id => {
+const getUser = async username => {
   const pool = newPool();
   try {
-    const { rows } = await pool.query('select * from users where id = $1', [
-      id
-    ]);
+    const { rows } = await pool.query(
+      'select * from users where username = $1',
+      [username]
+    );
 
     logger.log({
       level: logLevels.INFO,
@@ -62,7 +63,7 @@ const getUser = async id => {
     });
 
     pool.end();
-    return rows;
+    return rows[0];
   } catch (err) {
     logger.log({
       level: logLevels.ERROR,
@@ -192,6 +193,7 @@ const patchProfilePicturePath = async (userId, profilePicturePath) => {
 
 const patchPermission = async (userId, permissionId) => {
   const pool = newPool();
+
   try {
     const {
       rows

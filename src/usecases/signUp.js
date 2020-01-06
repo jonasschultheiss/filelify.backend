@@ -26,10 +26,7 @@ const signUp = async body => {
         username: newUser.username,
         email: newUser.email,
         profilePicturePath: newUser.profile_picture_path,
-        permission: {
-          id: userPermission.id,
-          name: userPermission.name
-        }
+        permission: userPermission.id
       },
       config.JWT_SECRET
     );
