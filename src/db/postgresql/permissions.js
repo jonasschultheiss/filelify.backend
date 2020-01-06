@@ -1,4 +1,4 @@
-const { Pool } = require('pg');
+const { newPool } = require('../../commons/pool');
 const { logger, logLevels } = require('../../commons/logging');
 
 const listPermissions = async () => {

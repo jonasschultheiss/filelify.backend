@@ -1,4 +1,4 @@
-const { Pool } = require('pg');
+const { newPool } = require('../../commons/pool');
 const { logger, logLevels } = require('../../commons/logging');
 
 const createUser = async (
@@ -8,7 +8,7 @@ const createUser = async (
   profilePicturePath,
   permissionId
 ) => {
-  const pool = new Pool();
+  const pool = newPool();
   try {
     const {
       rows
@@ -49,7 +49,7 @@ const createUser = async (
 };
 
 const getUser = async id => {
-  const pool = new Pool();
+  const pool = newPool();
   try {
     const { rows } = await pool.query('select * from users where id = $1', [
       id
@@ -76,7 +76,7 @@ const getUser = async id => {
 };
 
 const listUsers = async () => {
-  const pool = new Pool();
+  const pool = newPool();
   try {
     const { rows } = await pool.query('select * from users');
 
@@ -101,7 +101,7 @@ const listUsers = async () => {
 };
 
 const patchPassword = async (userId, hashedPassword) => {
-  const pool = new Pool();
+  const pool = newPool();
   try {
     const {
       rows
@@ -131,7 +131,7 @@ const patchPassword = async (userId, hashedPassword) => {
 };
 
 const patchEmail = async (userId, email) => {
-  const pool = new Pool();
+  const pool = newPool();
   try {
     const {
       rows
@@ -161,7 +161,7 @@ const patchEmail = async (userId, email) => {
 };
 
 const patchProfilePicturePath = async (userId, profilePicturePath) => {
-  const pool = new Pool();
+  const pool = newPool();
   try {
     const {
       rows
@@ -191,7 +191,7 @@ const patchProfilePicturePath = async (userId, profilePicturePath) => {
 };
 
 const patchPermission = async (userId, permissionId) => {
-  const pool = new Pool();
+  const pool = newPool();
   try {
     const {
       rows
