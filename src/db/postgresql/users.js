@@ -1,4 +1,4 @@
-const { Pool } = require('pg');
+const { newPool } = require('../../commons/pool');
 const { logger, logLevels } = require('../../commons/logging');
 
 const createUser = async (
@@ -8,7 +8,7 @@ const createUser = async (
   profilePicturePath,
   permissionId
 ) => {
-  const pool = new Pool();
+  const pool = newPool();
   try {
     const {
       rows
@@ -48,12 +48,13 @@ const createUser = async (
   }
 };
 
-const getUser = async id => {
-  const pool = new Pool();
+const getUser = async username => {
+  const pool = newPool();
   try {
-    const { rows } = await pool.query('select * from users where id = $1', [
-      id
-    ]);
+    const { rows } = await pool.query(
+      'select * from users where username = $1',
+      [username]
+    );
 
     logger.log({
       level: logLevels.INFO,
@@ -62,7 +63,7 @@ const getUser = async id => {
     });
 
     pool.end();
-    return rows;
+    return rows[0];
   } catch (err) {
     logger.log({
       level: logLevels.ERROR,
@@ -76,7 +77,7 @@ const getUser = async id => {
 };
 
 const listUsers = async () => {
-  const pool = new Pool();
+  const pool = newPool();
   try {
     const { rows } = await pool.query('select * from users');
 
@@ -101,7 +102,7 @@ const listUsers = async () => {
 };
 
 const patchPassword = async (userId, hashedPassword) => {
-  const pool = new Pool();
+  const pool = newPool();
   try {
     const {
       rows
@@ -131,7 +132,7 @@ const patchPassword = async (userId, hashedPassword) => {
 };
 
 const patchEmail = async (userId, email) => {
-  const pool = new Pool();
+  const pool = newPool();
   try {
     const {
       rows
@@ -161,7 +162,7 @@ const patchEmail = async (userId, email) => {
 };
 
 const patchProfilePicturePath = async (userId, profilePicturePath) => {
-  const pool = new Pool();
+  const pool = newPool();
   try {
     const {
       rows
@@ -191,7 +192,8 @@ const patchProfilePicturePath = async (userId, profilePicturePath) => {
 };
 
 const patchPermission = async (userId, permissionId) => {
-  const pool = new Pool();
+  const pool = newPool();
+
   try {
     const {
       rows

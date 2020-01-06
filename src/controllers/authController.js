@@ -23,10 +23,39 @@ const signUp = async (req, res) => {
 };
 
 const signIn = async (req, res) => {
-  res.send('signIn');
+  try {
+    const jwt = await usecases.signIn(req.body);
+    res.status(200);
+    res.json({ token: jwt });
+  } catch (err) {
+    logger.log({
+      level: logLevels.ERROR,
+      message: 'exception at authController:signIn',
+      err
+    });
+
+    res.status(500).send();
+  }
+};
+
+const refresh = async (req, res) => {
+  try {
+    const jwt = await usecases.refresh(req.body);
+    res.status(200);
+    res.json({ token: jwt });
+  } catch (err) {
+    logger.log({
+      level: logLevels.ERROR,
+      message: 'exception at authController:refresh',
+      err
+    });
+
+    res.status(500).send();
+  }
 };
 
 module.exports = {
   signUp,
-  signIn
+  signIn,
+  refresh
 };

@@ -1,8 +1,8 @@
-const { Pool } = require('pg');
+const { newPool } = require('../../commons/pool');
 const { logger, logLevels } = require('../../commons/logging');
 
 const listPermissions = async () => {
-  const pool = new Pool();
+  const pool = newPool();
   try {
     const { rows } = await pool.query('select * from permissions');
 
@@ -23,7 +23,7 @@ const listPermissions = async () => {
 };
 
 const getPermission = async name => {
-  const pool = new Pool();
+  const pool = newPool();
   try {
     const {
       rows
