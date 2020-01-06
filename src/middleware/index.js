@@ -7,6 +7,7 @@ const middleware = [];
 
 middleware.push(helmet());
 middleware.push(jsonParser);
+
 middleware.push(validationErrorHandler);
 
 module.exports = middleware;
