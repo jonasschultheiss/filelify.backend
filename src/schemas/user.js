@@ -32,4 +32,13 @@ const signIn = Joi.object({
   password: user.password.required()
 });
 
-module.exports = { signUp, signIn };
+const getUser = Joi.object({
+  token: Joi.string()
+    .min(1)
+    .required(),
+  id: Joi.number()
+    .min(1)
+    .required()
+});
+
+module.exports = { signUp, signIn, getUser };

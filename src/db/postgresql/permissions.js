@@ -22,7 +22,7 @@ const listPermissions = async () => {
   }
 };
 
-const getPermission = async name => {
+const getPermissionByName = async name => {
   const pool = newPool();
   try {
     const {
@@ -45,7 +45,33 @@ const getPermission = async name => {
   }
 };
 
+const getPermissionById = async id => {
+  console.log('here', id);
+  const pool = newPool();
+  try {
+    const { rows } = await pool.query(
+      'select * from permissions where id = $1',
+      [id]
+    );
+
+    logger.info('successfully queried permissions table.');
+
+    pool.end();
+    return rows[0];
+  } catch (err) {
+    logger.log({
+      level: logLevels.ERROR,
+      message: 'exception in query in permissions.js:getUserPermissions',
+      err
+    });
+
+    pool.end();
+    return err;
+  }
+};
+
 module.exports = {
   listPermissions,
-  getPermission
+  getPermissionByName,
+  getPermissionById
 };

@@ -1,6 +1,8 @@
+const usecases = require('../usecases');
+
 const getUser = async (req, res) => {
-  res.status(501);
-  res.send('not implemented yet');
+  const user = await usecases.getUser(req.params);
+  res.status(200).json(user);
 };
 
 const listUsers = async (req, res) => {
