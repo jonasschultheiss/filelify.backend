@@ -1,6 +1,8 @@
 const Joi = require('@hapi/joi');
 const regex = require('../commons/regex');
 
+const token = Joi.string().min(1);
+
 const user = {
   id: Joi.number().min(1),
   username: Joi.string()
@@ -32,6 +34,11 @@ const signIn = Joi.object({
   password: user.password.required()
 });
 
+const patch = Joi.object({
+  token: token.required(),
+  password: user.password.required()
+});
+
 const getUser = Joi.object({
   token: Joi.string()
     .min(1)
@@ -41,4 +48,4 @@ const getUser = Joi.object({
     .required()
 });
 
-module.exports = { signUp, signIn, getUser };
+module.exports = { signUp, signIn, getUser, patch };

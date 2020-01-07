@@ -11,8 +11,12 @@ const listUsers = async (req, res) => {
 };
 
 const patchUser = async (req, res) => {
-  res.status(501);
-  res.send('not implemented yet');
+  try {
+    await usecases.patchUser(req.params, req.body);
+    res.send(204).send();
+  } catch (err) {
+    res.status(500).send();
+  }
 };
 
 const getPermissions = async (req, res) => {

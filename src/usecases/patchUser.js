@@ -1,15 +1,13 @@
 const argon2 = require('argon2');
-const jwt = require('jsonwebtoken');
 
 const db = require('../db');
-const config = require('../commons/config');
 const { logger, logLevels } = require('../commons/logging');
 
-const patchUsername = async body => {
+const patchUser = async (params, body) => {
   try {
-    const { token, username } = body;
-
-    return token;
+    const { password } = body;
+    const hashedPassword = await argon2.hash(password);
+    await db.users.patchPassword(params.id, hashedPassword);
   } catch (err) {
     logger.log({
       level: logLevels.ERROR,
@@ -21,4 +19,4 @@ const patchUsername = async body => {
   }
 };
 
-module.exports = signUp;
+module.exports = patchUser;

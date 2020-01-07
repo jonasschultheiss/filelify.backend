@@ -8,7 +8,7 @@ const { logger, logLevels } = require('../commons/logging');
 const signIn = async body => {
   try {
     const { username, password } = body;
-    const user = await db.users.getUser(username);
+    const user = await db.users.getUserByName(username);
     if (!user && !user.id && !user.hashed_password)
       throw Error('User not found.');
 

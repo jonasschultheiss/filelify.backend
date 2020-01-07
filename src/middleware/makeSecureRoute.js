@@ -11,15 +11,15 @@ const selfAndAdmin = async (req, res, next) => {
       token.permission
     );
     const { _id } = token;
+    console.log('gg', { id, _id });
     if (permission.name === db.permissions.ADMIN) {
       next();
-    } else if (id === _id) {
+    } else if (parseInt(id, 10) === _id) {
       next();
     } else {
       res.status(401).send();
     }
   } catch (err) {
-    console.log('gg', err);
     res.status(500).send();
   }
 };
@@ -34,7 +34,6 @@ const onlyAdmin = async (req, res, next) => {
 
     next();
   } catch (err) {
-    console.log('gg', err);
     res.status(500).send();
   }
 };

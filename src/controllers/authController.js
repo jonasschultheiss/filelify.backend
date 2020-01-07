@@ -33,8 +33,13 @@ const signIn = async (req, res) => {
       message: 'exception at authController:signIn',
       err
     });
-
-    res.status(500).send();
+    if (err.message === 'User not found.') {
+      res.status(400).json({ message: err.message });
+    } else if (err.message === 'Password not correct.') {
+      res.status(400).json({ message: err.message });
+    } else {
+      res.status(500).send();
+    }
   }
 };
 
@@ -50,7 +55,13 @@ const refresh = async (req, res) => {
       err
     });
 
-    res.status(500).send();
+    if (err.message === 'Token not provided.') {
+      res.status(400).json({ message: err.message });
+    } else if (err.message === 'Token not valid.') {
+      res.status(400).json({ message: err.message });
+    } else {
+      res.status(500).send();
+    }
   }
 };
 
