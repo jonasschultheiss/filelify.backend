@@ -36,7 +36,9 @@ const signIn = Joi.object({
 
 const patch = Joi.object({
   token: token.required(),
-  password: user.password.required()
+  password: user.password,
+  email: user.email,
+  profilePicturePath: user.profilePicturePath
 });
 
 const getUser = Joi.object({

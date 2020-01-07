@@ -16,7 +16,7 @@ const signUp = async body => {
       username,
       hashedPassword,
       email,
-      'https://google.com',
+      'https://filelifygg.fra1.digitaloceanspaces.com/_profilePictures/_default.png',
       userPermission.id
     );
 

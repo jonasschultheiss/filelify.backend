@@ -5,13 +5,15 @@ const db = require('../db');
 
 const selfAndAdmin = async (req, res, next) => {
   try {
-    const token = await jwt.decode(req.body.token, config.JWT_SECRET);
+    const token = await jwt.decode(
+      req.body.token || req.headers.token,
+      config.JWT_SECRET
+    );
     const { id } = req.params;
     const permission = await db.permissions.getSpecificPermissionsById(
       token.permission
     );
     const { _id } = token;
-    console.log('gg', { id, _id });
     if (permission.name === db.permissions.ADMIN) {
       next();
     } else if (parseInt(id, 10) === _id) {

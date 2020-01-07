@@ -46,7 +46,6 @@ const getPermissionByName = async name => {
 };
 
 const getPermissionById = async id => {
-  console.log('here', id);
   const pool = newPool();
   try {
     const { rows } = await pool.query(
