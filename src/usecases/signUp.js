@@ -8,7 +8,7 @@ const { logger, logLevels } = require('../commons/logging');
 const signUp = async body => {
   try {
     const { username, password, email } = body;
-    const userPermission = await db.permissions.getSpecificPermissions(
+    const userPermission = await db.permissions.getSpecificPermissionsByName(
       db.permissions.USER
     );
     const hashedPassword = await argon2.hash(password);
@@ -16,7 +16,7 @@ const signUp = async body => {
       username,
       hashedPassword,
       email,
-      'https://google.com',
+      'https://filelifygg.fra1.digitaloceanspaces.com/_profilePictures/_default.png',
       userPermission.id
     );
 

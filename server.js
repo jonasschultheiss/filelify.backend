@@ -17,12 +17,6 @@ logger.log({
   message: 'database url',
   config: config.DATABASE_URL
 });
-// const client = config.DATABASE_URL
-//   ? new Client({
-//       connectionString: config.DATABASE_URL,
-//       ssl: true
-//     })
-//   : new Client();
 
 const port = config.PORT || 3000;
 

@@ -48,13 +48,40 @@ const createUser = async (
   }
 };
 
-const getUser = async username => {
+const getUserByName = async username => {
   const pool = newPool();
   try {
     const { rows } = await pool.query(
       'select * from users where username = $1',
       [username]
     );
+
+    logger.log({
+      level: logLevels.INFO,
+      message: 'successfully queried user',
+      user: rows
+    });
+
+    pool.end();
+    return rows[0];
+  } catch (err) {
+    logger.log({
+      level: logLevels.ERROR,
+      message: 'exception in query in users.js:getUser',
+      err
+    });
+
+    pool.end();
+    return err;
+  }
+};
+
+const getUserById = async id => {
+  const pool = newPool();
+  try {
+    const { rows } = await pool.query('select * from users where id = $1', [
+      id
+    ]);
 
     logger.log({
       level: logLevels.INFO,
@@ -224,7 +251,8 @@ const patchPermission = async (userId, permissionId) => {
 
 module.exports = {
   createUser,
-  getUser,
+  getUserById,
+  getUserByName,
   listUsers,
   patchPassword,
   patchEmail,
